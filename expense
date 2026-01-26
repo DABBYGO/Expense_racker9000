@@ -1,2 +1,13 @@
 #create a list of expense
-expense_list = ["
+def expense():
+    expense_list = {
+    "food":[],
+    "housing":[],
+    "clothing":[],
+    "transportation":[],
+    "entertainment":[],
+    "saving":[],
+}
+
+items = input("what is your items:")
+price = input("how much do you cost:")

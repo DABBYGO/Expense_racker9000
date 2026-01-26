@@ -14,12 +14,14 @@ def expense():
     price = float(input("how much do you cost:"))
 
     if category in expense_list:
-     expense_list[category].append({
-        "item":items,
-        "price":price
-    })
+        expense_list[category].append({
+            "item": items,
+            "price": price
+        })
     else:
        print("enter category")
+    
+    return expense_list
 
-print("expense_list")
-expense()
+expenses = expense()
+print(expense)

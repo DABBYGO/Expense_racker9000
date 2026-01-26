@@ -9,5 +9,12 @@ def expense():
     "saving":[],
 }
 
+#user input
+list = input("which expense:")
 items = input("what is your items:")
-price = input("how much do you cost:")
+price = float(input("how much do you cost:"))
+
+expense_list["food"].append({
+    "items": items,
+    "price": price
+})

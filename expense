@@ -1,4 +1,3 @@
-#create a list of expense
 def expense():
     expense_list = {
     "food":[],
@@ -8,13 +7,19 @@ def expense():
     "entertainment":[],
     "saving":[],
 }
-
+    
 #user input
-list = input("which expense:")
-items = input("what is your items:")
-price = float(input("how much do you cost:"))
+    category = input("which expense:")
+    items = input("what is your items:")
+    price = float(input("how much do you cost:"))
 
-expense_list["food"].append({
-    "items": items,
-    "price": price
-})
+    if category in expense_list:
+     expense_list[category].append({
+        "item":items,
+        "price":price
+    })
+    else:
+       print("enter category")
+
+print("expense_list")
+expense()

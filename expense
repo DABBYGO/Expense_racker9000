@@ -1,17 +1,17 @@
 def expense():
     expense_list = {
-    "food":[],
-    "housing":[],
-    "clothing":[],
-    "transportation":[],
-    "entertainment":[],
-    "saving":[],
-}
-    
-#user input
-    category = input("which expense:")
-    items = input("what is your items:")
-    price = float(input("how much do you cost:"))
+        "food": [],
+        "housing": [],
+        "clothing": [],
+        "transportation": [],
+        "entertainment": [],
+        "saving": [],
+    }
+
+    # user input
+    category = input("Which expense category: ")
+    items = input("What is your item: ")
+    price = float(input("How much does it cost: "))
 
     if category in expense_list:
         expense_list[category].append({
@@ -19,9 +19,10 @@ def expense():
             "price": price
         })
     else:
-       print("enter category")
-    
+        print("Enter a valid category")
+
     return expense_list
 
+
 expenses = expense()
-print(expense)
+print(expenses)

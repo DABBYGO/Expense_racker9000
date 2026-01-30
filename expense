@@ -26,11 +26,20 @@ def expense():
 
  
         add = input("add more category:yes/no:")
-        if add =="n":
+        if add in ("n", "no"):
             break
 
-        return expense_list
+        elif add in ("y", "yes"):
+            continue
+
+        else:
+            print("enter y or n")
+
+    return expense_list
 
 
 expenses = expense()
-print(expenses)
+for category, items in expenses.items():
+    print(f"\n{category}:")
+    for x in items:
+        print(f"{x['item']}: {x['price']}")

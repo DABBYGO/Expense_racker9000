@@ -9,19 +9,27 @@ def expense():
     }
 
     # user input
-    category = input("Which expense category: ")
-    items = input("What is your item: ")
-    price = float(input("How much does it cost: "))
+    while True:
+        category = input("Which expense category: ")
 
-    if category in expense_list:
+        if category not in expense_list:
+            print("enter a category")
+            continue
+        items = input("What is your item: ")
+        price = float(input("How much does it cost: "))
+
+
         expense_list[category].append({
             "item": items,
             "price": price
         })
-    else:
-        print("Enter a valid category")
 
-    return expense_list
+ 
+        add = input("add more category:yes/no:")
+        if add =="n":
+            break
+
+        return expense_list
 
 
 expenses = expense()

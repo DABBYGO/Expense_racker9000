@@ -43,3 +43,22 @@ for category, items in expenses.items():
     print(f"\n{category}:")
     for x in items:
         print(f"{x['item']}: {x['price']}")
+
+
+
+
+
+Total_Expenses = sum(item["Amount"]for item in expense)
+print (f"total amount: ${Total_Expenses}")
+
+def menu():
+    print("\n Main Menu ")
+    print ("1. Add Expense")
+    print ("2. Remove Expense")
+    print ("3. View Expense")
+    print ("4. Total Expense")
+    print ("5. Exit Program")
+
+
+def Add_Expense():
+    

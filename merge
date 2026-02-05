@@ -8,7 +8,7 @@ def expense():
         "saving": [],
     }
 
-    # user input
+    # user input their category, items and price. then you can decide to add more or not, if no the code will show the outcome
     while True:
         category = input("Which expense category: ")
 

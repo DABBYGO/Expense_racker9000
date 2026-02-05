@@ -1,0 +1,121 @@
+def expense():
+    expense_list = {
+        "food": [],
+        "housing": [],
+        "clothing": [],
+        "transportation": [],
+        "entertainment": [],
+        "saving": [],
+    }
+def Add_expense():
+    # user input their category, items and price. then you can decide to add more or not, if no the code will show the outcome
+    while True:
+        category = input("Which expense category: ")
+
+        if category not in expense:
+            print("enter a category")
+            continue
+        items = input("What is your item: ")
+        price = float(input("How much does it cost: "))
+
+
+        expense[category].append({
+            "item": items,
+            "price": price
+        })
+
+ 
+        add = input("add more category:yes/no:")
+        if add in ("n", "no"):
+            break
+
+        elif add in ("y", "yes"):
+            continue
+
+        else:
+            print("enter y or n")
+
+    return expense
+
+
+expenses = expense()
+for category, items in expenses.items():
+    print(f"\n{category}:")
+    for x in items:
+        print(f"{x['item']}: {x['price']}")
+
+Total_Expenses = sum(item["Amount"]for item in expense)
+
+def menu():
+    print("\n Main Menu ")
+    print ("1. Add Expense")
+    print ("2. Remove Expense")
+    print ("3. View Expense")
+    print ("4. Total Expense")
+    print ("5. Exit Program")
+
+
+def Menu_choice():
+    if choice == "1":
+        Add_expense()
+
+    elif choice == "2":
+        remove_expense()
+        
+    elif choice == "3":
+        filter_expenses()
+
+    elif choice == "4":
+        print (f"total amount: ${Total_Expenses}")
+
+    elif choice == "5":
+        print("Thank you for using our expense tracker today")
+        return False
+
+    else:
+        print("Invalid choice, please try again")
+    return True
+
+    
+while True:
+    menu()
+    choice = input("Please select your choice(1-5): ")
+    if not Menu_choice(choice):
+        break
+
+def remove_expense(expense_list):
+    print("\n Remove Expense ")
+    category = input("give category to delete!:")
+    
+    if category in expense_list:
+        item_name = input("give item to delete!:")
+        found = False
+        
+        # Look through list 
+        for i in range(len(expense) - 1, -1, -1):
+            if expense[i]["item"] == item_name:
+                expense_list[category].pop(i)
+                print(f"Deleted {item_name}.")
+                found = True
+                break
+        
+        if not found:
+            print("Item not found.")
+    else:
+        print("Category does not exist.")
+    return expense_list
+
+def filter_expenses(expense_list):
+    print("\n Filter by Category")
+    category = input("give category to view!:")
+    
+    if category in expense_list:
+        items = expense_list[category]
+        if len(items) > 0:
+            print(f"\nExpenses for {category}:")
+            for x in items:
+                print(f"- {x['item']}: ${x['price']}")
+        else:
+            print("No expenses in this category!")
+    else:
+        print("Not even a Category!")

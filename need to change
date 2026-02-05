@@ -44,7 +44,7 @@ for category, items in expenses.items():
     for x in items:
         print(f"{x['item']}: {x['price']}")
 
-Total_Expenses = sum(item["Amount"]for item in expense)
+Total_Expenses = sum(item["price"]for item in expense)
 
 def menu():
     print("\n Main Menu ")

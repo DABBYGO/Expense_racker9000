@@ -44,12 +44,7 @@ for category, items in expenses.items():
     for x in items:
         print(f"{x['item']}: {x['price']}")
 
-
-
-
-
 Total_Expenses = sum(item["Amount"]for item in expense)
-print (f"total amount: ${Total_Expenses}")
 
 def menu():
     print("\n Main Menu ")
@@ -60,15 +55,35 @@ def menu():
     print ("5. Exit Program")
 
 
-def Add_Expense():
+def Menu_choice():
+    if choice == "1":
+        category()
+        items()
+        price()
+
+    elif choice == "2":
+        remove_expense()
+        
+    elif choice == "3":
+        filter_expenses()
+
+    elif choice == "4":
+        print (f"total amount: ${Total_Expenses}")
+
+    elif choice == "5":
+        print("Thank you for using our expense tracker today")
+        break
+
+    else:
+        print("Invalid choice, please try again")
+    return true
+
     
-
-
-
-
-
-
-
+while true:
+    menu()
+    choice = input("Please select your choice(1-5): ")
+    if not handle_choice(choice):
+        break
 
 def remove_expense(expense_list):
     print("\n Remove Expense ")

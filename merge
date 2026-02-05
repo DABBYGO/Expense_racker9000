@@ -7,7 +7,7 @@ def expense():
         "entertainment": [],
         "saving": [],
     }
-
+def Add_expense()
     # user input their category, items and price. then you can decide to add more or not, if no the code will show the outcome
     while True:
         category = input("Which expense category: ")
@@ -57,9 +57,7 @@ def menu():
 
 def Menu_choice():
     if choice == "1":
-        category()
-        items()
-        price()
+        Add_Expense()
 
     elif choice == "2":
         remove_expense()

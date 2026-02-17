@@ -10,6 +10,7 @@ def expense():
 
     # user input
     while True:
+        print("food, housing, clothing, transportation, entertainment, saving")
         category = input("Which expense category: ")
 
         if category not in expense_list:
@@ -44,44 +45,20 @@ for category, items in expenses.items():
     for x in items:
         print(f"{x['item']}: {x['price']}")
 
-Total_Expenses = sum(item["price"]for item in expense)
+Total_Expenses = sum(
+    item["price"]
+    for category in expenses.values()
+    for item in category
+)
 
-def menu():
-    print("\n Main Menu ")
-    print ("1. Add Expense")
-    print ("2. Remove Expense")
-    print ("3. View Expense")
-    print ("4. Total Expense")
-    print ("5. Exit Program")
+print(f"Total expense:{Total_Expenses}")
 
+def Meun_choice():
 
-def Menu_choice():
-    if choice == "1":
-        Add_expense()
-
-    elif choice == "2":
-        remove_expense()
-        
-    elif choice == "3":
-        filter_expenses()
-
-    elif choice == "4":
-        print (f"total amount: ${Total_Expenses}")
-
-    elif choice == "5":
-        print("Thank you for using our expense tracker today")
-        return False
-
-    else:
-        print("Invalid choice, please try again")
-    return True
-
-    
-while True:
-    menu()
-    choice = input("Please select your choice(1-5): ")
-    if not Menu_choice(choice):
-        break
+    while True:
+        choice = input("Please select your choice(1-5): ")
+        if not Menu_choice(choice):
+            break
 
 def remove_expense(expense_list):
     print("\n Remove Expense ")
@@ -119,3 +96,34 @@ def filter_expenses(expense_list):
             print("No expenses in this category!")
     else:
         print("Not even a Category!")
+
+def menu():
+    print("\n Main Menu ")
+    print ("1. Add Expense")
+    print ("2. Remove Expense")
+    print ("3. View Expense")
+    print ("4. Total Expense")
+    print ("5. Exit Program")
+
+
+def Menu_choice(choice):
+    if choice == "1":
+        Add_expense()
+
+    elif choice == "2":
+        remove_expense()
+        
+    elif choice == "3":
+        filter_expenses()
+
+    elif choice == "4":
+        print (f"total amount: ${Total_Expenses}")
+
+    elif choice == "5":
+        print("Thank you for using our expense tracker today")
+        return False
+
+    else:
+        print("Invalid choice, please try again")
+    return True
+

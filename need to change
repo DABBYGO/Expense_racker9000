@@ -1,23 +1,19 @@
-def expense():
-    expense_list = {
-        "food": [],
-        "housing": [],
-        "clothing": [],
-        "transportation": [],
-        "entertainment": [],
-        "saving": [],
-    }
+def add_expense(expense_list):
 
     # user input
     while True:
         print("food, housing, clothing, transportation, entertainment, saving")
-        category = input("Which expense category: ")
+        category = input("Which expense category: ").lower()
 
         if category not in expense_list:
             print("enter a category")
             continue
         items = input("What is your item: ")
-        price = float(input("How much does it cost: "))
+        try:
+            price = float(input("How much does it cost: "))
+        except ValueError:
+            print("Invalid price.")
+            return
 
 
         expense_list[category].append({
@@ -26,7 +22,7 @@ def expense():
         })
 
  
-        add = input("add more category:yes/no:")
+        add = input("Add another category? (yes/no): ").lower()
         if add in ("n", "no"):
             break
 
@@ -36,41 +32,29 @@ def expense():
         else:
             print("enter y or n")
 
-    return expense_list
+        
 
 
-expenses = expense()
-for category, items in expenses.items():
-    print(f"\n{category}:")
-    for x in items:
-        print(f"{x['item']}: {x['price']}")
+def total_expenses(expense_list):
+    total = sum(
+        item["price"]
+        for category in expense_list.values()
+        for item in category
+    )
+    print(f"Total expense: ${total}")
 
-Total_Expenses = sum(
-    item["price"]
-    for category in expenses.values()
-    for item in category
-)
-
-print(f"Total expense:{Total_Expenses}")
-
-def Meun_choice():
-
-    while True:
-        choice = input("Please select your choice(1-5): ")
-        if not Menu_choice(choice):
-            break
 
 def remove_expense(expense_list):
     print("\n Remove Expense ")
-    category = input("give category to delete!:")
+    category = input("give category to delete!:").lower()
     
     if category in expense_list:
         item_name = input("give item to delete!:")
         found = False
         
         # Look through list 
-        for i in range(len(expense) - 1, -1, -1):
-            if expense[i]["item"] == item_name:
+        for i in range(len(expense_list[category]) - 1, -1, -1):
+            if expense_list[category][i]["item"] == item_name:
                 expense_list[category].pop(i)
                 print(f"Deleted {item_name}.")
                 found = True
@@ -80,11 +64,10 @@ def remove_expense(expense_list):
             print("Item not found.")
     else:
         print("Category does not exist.")
-    return expense_list
 
 def filter_expenses(expense_list):
     print("\n Filter by Category")
-    category = input("give category to view!:")
+    category = input("give category to view!:").lower()
     
     if category in expense_list:
         items = expense_list[category]
@@ -97,6 +80,15 @@ def filter_expenses(expense_list):
     else:
         print("Not even a Category!")
 
+expense_list = {
+    "food": [],
+    "housing": [],
+    "clothing": [],
+    "transportation": [],
+    "entertainment": [],
+    "saving": [],
+}
+
 def menu():
     print("\n Main Menu ")
     print ("1. Add Expense")
@@ -106,24 +98,25 @@ def menu():
     print ("5. Exit Program")
 
 
-def Menu_choice(choice):
+while True:
+    menu()
+    choice = input("Please Select an option (1-5)")
+
     if choice == "1":
-        Add_expense()
+        add_expense(expense_list)
 
     elif choice == "2":
-        remove_expense()
+        remove_expense(expense_list)
         
     elif choice == "3":
-        filter_expenses()
+        filter_expenses(expense_list)
 
     elif choice == "4":
-        print (f"total amount: ${Total_Expenses}")
+         total_expenses(expense_list)
 
     elif choice == "5":
         print("Thank you for using our expense tracker today")
-        return False
+        break
 
     else:
         print("Invalid choice, please try again")
-    return True
-
